@@ -82,7 +82,7 @@ class MainView extends React.Component {
     const currentUser = this.props.currentUser
 
     return (
-      <div className='col-md-9'>
+      <div className='col-sm-9'>
 
         <div className='feed-toggle'>
           <ul className='nav nav-pills outline-active'>
