@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import ListErrors from './common/ListErrors'
 import GoogleMap from './common/Maps/GoogleMap'
 import TagList from './common/TagList'
-import ToGetPicUrl from './common/ToGetPicUrl'
+// import ToGetPicUrl from './common/ToGetPicUrl'
+import ImageUpload from './common/ImageUpload'
 import agent from '../agent'
 
 import {
@@ -64,7 +65,8 @@ class RequestEditor extends React.Component {
     this.changeEndTime = ev => this.props.onUpdateField('endTime', ev.target.value)
     this.changeEndPlace = ev => this.props.onUpdateField('endPlace', ev.target.value)
     this.changeText = ev => this.props.onUpdateField('text', ev.target.value)
-    this.changeImage = ev => this.props.onUpdateField('image', ev.target.value)
+    // this.changeImage = ev => this.props.onUpdateField('image', ev.target.value)
+    this.changeImage = url => this.props.onUpdateField('image', url)
     this.changeTagInput = ev => this.props.onUpdateField('tagInput', ev.target.value)
 
     this.watchForEnter = ev => {
@@ -219,7 +221,9 @@ class RequestEditor extends React.Component {
                     <TagList unit={this.props} removeTag={this.removeTag} />
                   </fieldset>
 
-                  <ToGetPicUrl />
+                  <ImageUpload changeImage={this.changeImage}/>
+
+                  {/* <ToGetPicUrl />
 
                   <fieldset className='form-group'>
                     <input
@@ -241,7 +245,7 @@ class RequestEditor extends React.Component {
                           : null
                       }
                     </div>
-                  </div>
+                  </div> */}
 
                   <button
                     className='btn btn-lg pull-xs-right btn-primary'
