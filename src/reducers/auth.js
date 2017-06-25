@@ -10,7 +10,8 @@ import {
 const defaultState = {
   username: '',
   email: '',
-  password: ''
+  password: '',
+  confirm: ''
 }
 
 export default (state = defaultState, action) => {

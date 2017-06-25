@@ -31,6 +31,11 @@ const mapDispatchToProps = dispatch => ({
     key: 'password',
     value
   }),
+  onChangeConfirm: value => dispatch({
+    type: UPDATE_FIELD_AUTH,
+    key: 'confirm',
+    value
+  }),
   onSubmit: (username, email, password) => dispatch({
     type: REGISTER,
     payload: agent.Auth.register(username, email, password)
@@ -43,12 +48,22 @@ const mapDispatchToProps = dispatch => ({
 class Register extends React.Component {
   constructor(){
     super()
+    this.state = {
+      error: ''
+    }
+
     this.changeUsername = ev => this.props.onChangeUsername(ev.target.value)
     this.changeEmail = ev => this.props.onChangeEmail(ev.target.value)
     this.changePassword = ev => this.props.onChangePassword(ev.target.value)
+    this.changeConfirm = ev => this.props.onChangeConfirm(ev.target.value)
     this.submitForm = (username, email, password) => ev => {
       ev.preventDefault()
-      this.props.onSubmit(username, email, password)
+      if(this.props.confirm === this.props.password){
+        this.setState({ error: '' })
+        this.props.onSubmit(username, email, password)
+      }else{
+        this.setState({ error: 'Please confirm your password again:)' })
+      }
     }
   }
 
@@ -60,6 +75,7 @@ class Register extends React.Component {
     const username = this.props.username
     const email = this.props.email
     const password = this.props.password
+    const confirm = this.state.confirm
 
     return (
       <div className='auth-page'>
@@ -78,6 +94,11 @@ class Register extends React.Component {
               </p>
 
               <ListErrors errors={this.props.errors} />
+            {
+              this.state.error ?
+              <ul className='error-messages'><li>{this.state.error}</li></ul>
+              : null
+            }
 
               <form onSubmit={this.submitForm(username, email, password)}>
                 <fieldset>
@@ -107,6 +128,15 @@ class Register extends React.Component {
                       placeholder='Password'
                       value={password}
                       onChange={this.changePassword} />
+                  </fieldset>
+
+                  <fieldset className='form-group'>
+                    <input
+                      className='form-control form-control-lg'
+                      type='password'
+                      placeholder='Confirm Password'
+                      value={confirm}
+                      onChange={this.changeConfirm} />
                   </fieldset>
 
                   <button
