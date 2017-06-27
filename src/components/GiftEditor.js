@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import ListErrors from './common/ListErrors'
 import TagList from './common/TagList'
-import ToGetPicUrl from './common/ToGetPicUrl'
+import ImageUpload from './common/ImageUpload'
 import agent from '../agent'
 
 import {
@@ -62,7 +62,7 @@ class GiftEditor extends React.Component {
     this.changeExpireAt = ev => this.props.onUpdateField('expireAt', ev.target.value)
     this.changeAccess = ev => this.props.onUpdateField('access', ev.target.value)
     this.changeTagInput = ev => this.props.onUpdateField('tagInput', ev.target.value)
-    this.changeImage = ev => this.props.onUpdateField('image', ev.target.value)
+    this.changeImage = url => this.props.onUpdateField('image', url)
 
     this.watchForEnter = ev => {
       if(ev.keyCode === 13 && ['personal', 'public', 'openpublic', ''].indexOf(this.props.tagInput.toLowerCase()) === -1){
@@ -149,7 +149,7 @@ class GiftEditor extends React.Component {
                   </fieldset>
 
                   <label htmlFor='toggle'>
-                    <strong>Optional:</strong> Set its receiver
+                    <i>Optional:</i> Set its receiver
                   </label>
                   &nbsp;&nbsp;
                   <input
@@ -165,7 +165,7 @@ class GiftEditor extends React.Component {
                       <p>- Please ensure the username of the receiver is <strong>spelt right</strong>.</p>
                     </div>
                     <fieldset className='form-group'>
-                      Receiver:
+                      <strong>Receiver:</strong>
                       <input
                         className='form-control form-control-lg'
                         type='text'
@@ -176,7 +176,7 @@ class GiftEditor extends React.Component {
 
 
                   <fieldset className='form-group'>
-                    Available before:
+                    <strong>Available before:</strong>
                     <input
                       className='form-control form-control-lg'
                       type='datetime-local'
@@ -184,6 +184,7 @@ class GiftEditor extends React.Component {
                       onChange={this.changeExpireAt} />
                   </fieldset>
 
+                  <strong>Tags:</strong>
                   <div className='row'>
                     <div className='col-md-3 col-xs-12'>
                       <fieldset className='form-control form-control-label radio'>
@@ -201,13 +202,6 @@ class GiftEditor extends React.Component {
                             checked={this.props.access === 'public'}
                             onChange={this.changeAccess} /> public
                         </label><br />
-                        {/* <label>
-                          <input
-                            type='radio'
-                            value='openPublic'
-                            checked={this.props.access === 'openPublic'}
-                            onChange={this.changeAccess} /> openPublic
-                        </label><br /> */}
                       </fieldset>
                       <div className='tag-list'>
                         <span className='tag-default tag-pill tag-info'>
@@ -232,27 +226,12 @@ class GiftEditor extends React.Component {
                     </div>
                   </div>
 
-                  <ToGetPicUrl />
-
-                  <fieldset className='form-group'>
-                    <input
-                      className='form-control form-control-lg'
-                      type='url'
-                      placeholder='An image URL if it helps (optional)'
-                      value={this.props.image}
-                      onChange={this.changeImage} />
-                  </fieldset>
-
+                  <strong>Image:</strong>
                   <div className='row'>
-                    <div className='col-md-6 offset-md-3 col-xs-12'>
-                      {
-                        this.props.image ?
-                          <img
-                            className='img-fluid'
-                            src={this.props.image}
-                            alt='preview failed. The URL better ends with .jpg/.jpeg or .png' />
-                          : null
-                      }
+                    <div className='col-xs-12'>
+                      <ImageUpload
+                        image={this.props.image}
+                        changeImage={this.changeImage} />
                     </div>
                   </div>
 
