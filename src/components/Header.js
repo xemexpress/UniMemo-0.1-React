@@ -92,9 +92,11 @@ class LoggedInView extends React.Component {
           <li className='nav-item nav-link icon' onClick={this.handleExpand}>
             {
               this.state.expanded ?
-              <span>&#9747;</span>  // Cross
+              <i className='ion-close-round'></i>
+              // <span>&#9747;</span>  // Cross
               :
-              <span>&#9776;</span>  // Burger Bar
+              <i className='ion-navicon-round'></i>
+              // <span>&#9776;</span>  // Burger Bar
             }
           </li>
 
