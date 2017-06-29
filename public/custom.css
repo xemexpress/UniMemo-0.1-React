@@ -145,7 +145,7 @@ input:checked + .slider:before {
     display: none;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 504px) {
   .topnav li {display: none;}
   .topnav li.icon {
     float: right;
@@ -153,7 +153,7 @@ input:checked + .slider:before {
   }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 504px) {
   .topnav.expanded {position: relative;}
   .topnav.expanded li.icon {
     position: relative;
