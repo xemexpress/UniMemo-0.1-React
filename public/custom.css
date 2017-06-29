@@ -129,3 +129,39 @@ input:checked + .slider:before {
   height: 30.5vw;
   min-height: 200px;
 }
+
+/* Responsive Top Navigation Bar */
+.topnav {
+  overflow: visible;
+}
+
+.topnav li {
+    float: right;
+    display: inline;
+    text-align: center;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+@media screen and (max-width: 770px) {
+  .topnav li {display: none;}
+  .topnav li.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .topnav.expanded {position: relative;}
+  .topnav.expanded li.icon {
+    position: relative;
+    display: block;
+    right: 0;
+    top: 0;
+  }
+  .topnav.expanded li {
+    display: inline;
+  }
+}

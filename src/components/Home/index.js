@@ -59,7 +59,7 @@ class Home extends React.Component {
             <div className='row'>
               <MainView />
 
-              <div className='col-sm-3'>
+              <div className='col-sm-3 col-xs-12'>
                 <div className='sidebar'>
                   <p>Popular Tags</p>
 

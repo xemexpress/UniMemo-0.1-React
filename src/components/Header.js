@@ -1,10 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router'
-
-import {
-  REQUEST_EDITOR_UNLOADED
-} from '../constants/actionTypes'
 
 const LoggedOutView = props => {
   if(!props.currentUser){
@@ -27,56 +22,88 @@ const LoggedOutView = props => {
   return null
 }
 
-const LoggedInView = props => {
-  if(props.currentUser){
-    return (
-      <ul className='nav navbar-nav pull-xs-right'>
+class LoggedInView extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      expanded: false
+    }
 
-        <li className='nav-item'>
-          <Link to='/' className='nav-link'>
-            Home
-          </Link>
-        </li>
+    this.handleExpand = ev => {
+      ev.preventDefault()
+      if(this.state.expanded){
+        this.setState({ expanded: false })
+      }else{
+        this.setState({ expanded: true })
+      }
 
-        <li className='nav-item'>
-          <Link to='requestEditor' className='nav-link' onClick={props.onEmptyEditor}>
-            <i className='ion-compose'></i>&nbsp;New Request
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to='giftEditor' className='nav-link'>
-            <i className='ion-android-happy'></i>&nbsp;New Gift
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to='settings' className='nav-link'>
-            <i className='ion-gear-a'></i>&nbsp;Settings
-          </Link>
-        </li>
-
-        <li className='nav-item'>
-          <Link to={`@${props.currentUser.username}/taken`} className='nav-link'>
-            <img
-              className='user-pic'
-              src={props.currentUser.proPic || 'https://photouploads.com/images/350646.png'}
-              alt={props.currentUser.username} />
-            {props.currentUser.username}
-          </Link>
-        </li>
-
-      </ul>
-    )
+      setTimeout(()=>{
+        this.setState({ expanded: false })
+      }, 10000)
+    }
   }
-  return null
-}
 
-const mapDispatchToProps = dispatch => ({
-  onEmptyEditor: () => dispatch({
-    type: REQUEST_EDITOR_UNLOADED
-  })
-})
+  componentDidMount(){
+    document.addEventListener('wheel', ev => {
+      if(this.state.expanded){
+        this.setState({ expanded: false })
+      }
+    })
+  }
+
+  render(){
+    if(this.props.currentUser){
+      return (
+        <ul id='myTopNav' className={this.state.expanded ? 'nav navbar-nav pull-xs-right topnav expanded' : 'nav navbar-nav pull-xs-right topnav'}>
+          <li className='nav-item'>
+            <Link to='/' className='nav-link'>
+              Home
+            </Link>
+          </li>
+
+          <li className='nav-item'>
+            <Link to='requestEditor' className='nav-link'>
+              <i className='ion-compose'></i>&nbsp;New Request
+            </Link>
+          </li>
+
+          <li className='nav-item'>
+            <Link to='giftEditor' className='nav-link'>
+              <i className='ion-android-happy'></i>&nbsp;New Gift
+            </Link>
+          </li>
+
+          <li className='nav-item'>
+            <Link to='settings' className='nav-link'>
+              <i className='ion-gear-a'></i>&nbsp;Settings
+            </Link>
+          </li>
+
+          <li className='nav-item'>
+            <Link to={`@${this.props.currentUser.username}/taken`} className='nav-link'>
+              <img
+                className='user-pic'
+                src={this.props.currentUser.proPic || 'https://photouploads.com/images/350646.png'}
+                alt={this.props.currentUser.username} />
+              {this.props.currentUser.username}
+            </Link>
+          </li>
+
+          <li className='nav-item nav-link icon' onClick={this.handleExpand}>
+            {
+              this.state.expanded ?
+              <span>&#9747;</span>  // Cross
+              :
+              <span>&#9776;</span>  // Burger Bar
+            }
+          </li>
+
+        </ul>
+      )
+    }
+    return null
+  }
+}
 
 const Header = props => {
   return (
@@ -88,13 +115,11 @@ const Header = props => {
         </Link>
 
         <LoggedOutView currentUser={props.currentUser} />
-        <LoggedInView
-          currentUser={props.currentUser}
-          onEmptyEditor={props.onEmptyEditor} />
+        <LoggedInView currentUser={props.currentUser} />
 
       </div>
     </nav>
   )
 }
 
-export default connect(()=>({}), mapDispatchToProps)(Header)
+export default Header

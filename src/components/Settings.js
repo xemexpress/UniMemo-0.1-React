@@ -152,10 +152,14 @@ class Settings extends React.Component {
                     <i className='ion-star'></i> {currentUser.yellowStars}&nbsp;&nbsp;
 
                     Mem {currentUser.mem}<br />
-                    <img
-                      className='img-fluid'
-                      src={ currentUser.proPic ? this.props.currentUser.proPic : 'https://photouploads.com/images/350646.png' }
-                      alt={`${currentUser.username}'s proPic`} /><br />
+                    <div className='row'>
+                      <div className='offset-sm-2 col-sm-8 offset-xs-1 col-xs-10'>
+                        <img
+                          className='img-fluid'
+                          src={ currentUser.proPic ? this.props.currentUser.proPic : 'https://photouploads.com/images/350646.png' }
+                          alt={`${currentUser.username}'s proPic`} /><br />
+                      </div>
+                    </div>
                   </div>
 
                   <hr />

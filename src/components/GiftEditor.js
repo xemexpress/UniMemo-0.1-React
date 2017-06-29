@@ -161,8 +161,8 @@ class GiftEditor extends React.Component {
                   <div id='expand'>
                     <div>
                       <i>Notes:</i>
-                      <p>- If your username's in this field, meaning it hasn't been sent yet.</p>
-                      <p>- Please ensure the username of the receiver is <strong>spelt right</strong>.</p>
+                      <p>- If it's your username, it hasn't been sent yet, </p>
+                      <p>- Please ensure the username is <strong>spelt right</strong>.</p>
                     </div>
                     <fieldset className='form-group'>
                       <strong>Receiver:</strong>

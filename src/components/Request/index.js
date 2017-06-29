@@ -1,9 +1,4 @@
 import React from 'react'
-// import marked from 'marked'
-// marked.setOptions({
-//   gfm: true,
-//   breaks: true
-// });
 import { connect } from 'react-redux'
 
 import UnitMeta from '../common/UnitMeta'
@@ -88,7 +83,6 @@ class Request extends React.Component {
     // `
 
     const markup = {
-      // __html: marked(text)
       __html: text
     }
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import request from 'superagent'
+import sha1 from 'sha1'
+import Ionicon from 'react-ionicons'
 import Dropzone from 'react-dropzone'
 
 import {
@@ -9,26 +11,40 @@ import {
   CLOUDINARY_UPLOAD_PRESET
 } from '../../constants/imageUploads'
 
-class HandleImage extends React.Component {
+class ImageUpload extends React.Component {
   constructor(){
     super()
     this.state = {
+      uploading: false,
       image: ''
     }
 
     this.onImageDrop = files => {
-      alert('After you dropped an image, image conversion will be in full swing. Please wait until your image is shown.')
+      alert('Please don\'t further perform any action until your image is shown below.')
+      this.setState({ uploading: true })
+      const image = files[0]
+
+      const timestamp = Date.now() / 1000
+
+      const paramsStr = 'timestamp=' + timestamp + '&upload_preset=' + CLOUDINARY_UPLOAD_PRESET
+                        + CLOUDINARY_API_SECRET
+
+      const signature = sha1(paramsStr)
 
       let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                          .attach('file', image)
+                          .field('api_key', CLOUDINARY_API_KEY)
+                          .field('timestamp', timestamp)
                           .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                          .field('file', files[0])
-      upload.end((err, response) => {
-        // console.log('error', err, 'response', response)
-        if(err){
-          console.error(err)
-          alert(err)
-        }
+                          .field('signature', signature)
 
+      upload.end((err, response) => {
+        this.setState({ uploading: false })
+
+        if(err){
+          alert(err)
+          return
+        }
         if(response.body.secure_url !== ''){
           this.setState({ image: response.body.secure_url })
           this.props.changeImage(response.body.secure_url)
@@ -38,14 +54,15 @@ class HandleImage extends React.Component {
   }
 
   render(){
-    // Original part
-    // Upload part
     if(this.state.image){
       return (
-        <div className='row'>
-          <div className='offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-xs-12'>
-            <img className='img-fluid' src={this.state.image} alt='Preview uploads failed.' />
+        <div>
+          <div className='row'>
+            <div className='offset-sm-4 col-sm-4 offset-xs-3 col-xs-6'>
+              <img className='img-fluid' src={this.state.image} alt='Preview uploads failed.' />
+            </div>
           </div>
+          <br />
         </div>
       )
     }else{
@@ -54,7 +71,7 @@ class HandleImage extends React.Component {
           {
             this.props.image ?
             <div className='row'>
-              <div className='offset-lg-3 col-lg-6 offset-md-2 col-md-8 col-xs-12'>
+              <div className='offset-sm-4 col-sm-4 offset-xs-3 col-xs-6'>
                 <img className='img-fluid' src={this.props.image} alt='Preview uploads failed.' />
               </div>
             </div>
@@ -62,17 +79,25 @@ class HandleImage extends React.Component {
             null
           }
           <br />
-          <Dropzone
-            className='card text-xs-center article-preview'
-            multiple={false}
-            accept='image/*'
-            onDrop={this.onImageDrop}>
-            <div>Drop an image or click to select a file to upload.</div>
-          </Dropzone>
+          {
+            this.state.uploading ?
+            <div className='text-xs-center'>
+              <Ionicon icon="ion-load-c" fontSize="60px" color="#347eff" rotate={true} />
+            </div>
+            :
+            <Dropzone
+              className='card text-xs-center article-preview'
+              multiple={false}
+              accept='image/*'
+              onDrop={this.onImageDrop}>
+              <div>Drop an image or click to select a file to upload.</div>
+            </Dropzone>
+          }
+          <br />
         </div>
       )
     }
   }
 }
 
-export default HandleImage
+export default ImageUpload
