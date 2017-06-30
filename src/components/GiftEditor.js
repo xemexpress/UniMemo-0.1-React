@@ -32,12 +32,12 @@ const mapDispatchToProps = dispatch => ({
     key,
     value
   }),
-  onAddTag: tag => dispatch({
-    type: ADD_TAG_GIFT,
-    tag
+  onAddTag: () => dispatch({
+    type: ADD_TAG_GIFT
   }),
-  onRemoveTag: () => dispatch({
-    type: REMOVE_TAG_GIFT
+  onRemoveTag: tag => dispatch({
+    type: REMOVE_TAG_GIFT,
+    tag
   }),
   onSubmit: payload => dispatch({
     type: SUBMIT_GIFT,

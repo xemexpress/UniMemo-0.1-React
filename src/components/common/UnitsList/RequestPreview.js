@@ -51,7 +51,7 @@ class RequestPreview extends React.Component {
             <button
               className={wishButtonClass}
               onClick={this.handleClick}>
-              <i className='ion-help-buoy'></i> {request.wishesCount}
+              <i className='ion-help-buoy'></i> Wish | {request.wishesCount}
             </button>
           </div>
         </div>
