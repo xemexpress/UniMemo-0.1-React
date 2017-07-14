@@ -147,6 +147,7 @@ class Request extends React.Component {
               updateErrors={this.props.updateErrors}
               comments={this.props.comments || []}
               requestId={this.props.params.requestId}
+              isPoster={this.props.currentUser.username === request.poster.username}
               currentUser={this.props.currentUser} />
           </div>
 

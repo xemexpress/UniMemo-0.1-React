@@ -4,10 +4,12 @@ import CommentList from './CommentList'
 import CommentInput from './CommentInput'
 
 class CommentContainer extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      hidden: true
+      hidden: !(this.props.isPoster || this.props.comments.some(comment => {
+        return comment.author.username === this.props.currentUser.username
+      }))
     }
 
     this.showComments = ev => {
@@ -25,21 +27,21 @@ class CommentContainer extends React.Component {
           currentUser={this.props.currentUser} />
 
         {
-          !this.state.hidden ?
+          this.props.comments.length === 0 ?
+          <div className='card text-xs-center article-preview'>
+            <a className='text-success'>No responses...yet</a>
+          </div>
+          :
+          this.state.hidden ?
+          <div className='card text-xs-center article-preview'>
+            <a className='text-success' onClick={this.showComments}>Show all responses</a>
+          </div>
+          :
           <CommentList
             errors={this.props.updateErrors}
             comments={this.props.comments}
             requestId={this.props.requestId}
             currentUser={this.props.currentUser} />
-          : this.props.comments.length === 0 ?
-          <div className='card text-xs-center article-preview'>
-            <a className='text-success'>No responses...yet</a>
-          </div>
-          :
-          <div className='card text-xs-center article-preview'>
-            <a className='text-success' onClick={this.showComments}>Show all responses</a>
-          </div>
-
         }
       </div>
     )

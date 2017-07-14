@@ -3,22 +3,19 @@ import React from 'react'
 import agent from '../../agent'
 
 export const CollectionTab = props => {
-  if(props.currentUser){
-    const handleCollect = ev => {
-      ev.preventDefault()
-      props.onTabClick('collect', agent.Requests.collect())
-    }
-    return (
-      <li className='nav-item'>
-        <a
-          className={props.tab === 'collect' ? 'nav-link active' : 'nav-link'}
-          onClick={handleCollect}>
-          <i className='ion-earth'></i>&nbsp;Your Collection
-        </a>
-      </li>
-    )
+  const handleCollect = ev => {
+    ev.preventDefault()
+    props.onTabClick('collect', agent.Requests.collect())
   }
-  return null
+  return (
+    <li className='nav-item'>
+      <a
+        className={props.tab === 'collect' ? 'nav-link active' : 'nav-link'}
+        onClick={handleCollect}>
+        <i className='ion-earth'></i>&nbsp;Your Collection
+      </a>
+    </li>
+  )
 }
 
 export const GlobalFeedTab = props => {
@@ -32,6 +29,22 @@ export const GlobalFeedTab = props => {
         className={props.tab === 'all' ? 'nav-link active' : 'nav-link'}
         onClick={handleAll}>
         <i className='ion-planet'></i>&nbsp;Global Feed
+      </a>
+    </li>
+  )
+}
+
+export const FurtherCollectTab = props => {
+  const handleFurtherCollect = ev => {
+    ev.preventDefault()
+    props.onTabClick('furtherCollect', agent.Requests.furtherCollect())
+  }
+  return (
+    <li className='nav-item'>
+      <a
+        className={props.tab === 'furtherCollect' ? 'nav-link active' : 'nav-link'}
+        onClick={handleFurtherCollect}>
+        <i className='ion-paper-airplane'></i>&nbsp;Further Collection
       </a>
     </li>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { CollectionTab, GlobalFeedTab, TagTab } from './RequestTabs'
+import { CollectionTab, GlobalFeedTab, FurtherCollectTab, TagTab } from './RequestTabs'
 import { ProvideTab, ReceiveTab } from './GiftTabs'
 import UnitsList from '../common/UnitsList'
 import agent from '../../agent'
@@ -66,8 +66,9 @@ class MainView extends React.Component {
     let payload
     if(this.state.loadRequest){
       payload = tab === 'all' ? agent.Requests.all(page) :
+        tab === 'collect' ? agent.Requests.collect(page) :
         tag ? agent.Requests.byTag(tag, page) :
-        agent.Requests.collect(page)
+        agent.Requests.furtherCollect(page)
     }else{
       payload = tab.startsWith('provide') ? agent.Gifts.providedBy(this.props.currentUser.username, tab.slice(8) ,page) :
         tag ? agent.Gifts.byTag(tag, page) :
@@ -90,11 +91,14 @@ class MainView extends React.Component {
               this.state.loadRequest ?
               <span>
                 <CollectionTab
-                  currentUser={currentUser}
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
 
                 <GlobalFeedTab
+                  tab={this.props.tab}
+                  onTabClick={this.props.onTabClick} />
+
+                <FurtherCollectTab
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
               </span>
@@ -113,14 +117,10 @@ class MainView extends React.Component {
 
             <TagTab tag={this.props.tag} />
 
-            {
-              currentUser ?
-              <label className="switch pull-xs-right">
-                <input type="checkbox" onChange={this.handleToggle} checked={this.state.loadRequest}/>
-                <div className="slider round"></div>
-              </label>
-              : null
-            }
+            <label className="switch pull-xs-right">
+              <input type="checkbox" onChange={this.handleToggle} checked={this.state.loadRequest}/>
+              <div className="slider round"></div>
+            </label>
 
           </ul>
         </div>
