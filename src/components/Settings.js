@@ -40,7 +40,7 @@ class SettingsForm extends React.Component {
 
   componentWillMount(){
     this.setState({
-      proPic: this.props.currentUser.proPic || '',
+      proPic: this.props.currentUser.proPic.endsWith('v1500289994/c6zgp0zjykx6t4uxva19.jpg') ? '' : this.props.currentUser.proPic,
       username: this.props.currentUser.username,
       bio: this.props.currentUser.bio || '',
       mobileNum: this.props.currentUser.mobileNum || ''
@@ -51,7 +51,7 @@ class SettingsForm extends React.Component {
   // componentWillReceiveProps(nextProps){
   //   if(nextProps.currentUser){
   //     this.setState({
-  //       proPic: nextProps.currentUser.proPic || '',
+  //       proPic: nextProps.currentUser.proPic.endsWith('v1500289994/c6zgp0zjykx6t4uxva19.jpg') ? '' : nextProps.currentUser.proPic,
   //       username: nextProps.currentUser.username,
   //       bio: nextProps.currentUser.bio || '',
   //       password: '',
@@ -151,13 +151,13 @@ class Settings extends React.Component {
 
                     <i className='ion-star'></i> {currentUser.yellowStars}&nbsp;&nbsp;
 
-                    Mem {currentUser.mem}<br />
+                    Mem {currentUser.mem}<br /><br />
                     <div className='row'>
-                      <div className='offset-sm-2 col-sm-8 offset-xs-1 col-xs-10'>
+                      <div className='offset-sm-4 col-sm-4 offset-xs-3 col-xs-6'>
                         <img
                           className='img-fluid'
-                          src={ currentUser.proPic ? this.props.currentUser.proPic : 'https://photouploads.com/images/350646.png' }
-                          alt={`${currentUser.username}'s proPic`} /><br />
+                          src={currentUser.proPic}
+                          alt={`${currentUser.username}'s proPic`} />
                       </div>
                     </div>
                   </div>

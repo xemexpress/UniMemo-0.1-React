@@ -83,7 +83,7 @@ class LoggedInView extends React.Component {
             <Link to={`@${this.props.currentUser.username}/taken`} className='nav-link'>
               <img
                 className='user-pic'
-                src={this.props.currentUser.proPic || 'https://photouploads.com/images/350646.png'}
+                src={this.props.currentUser.proPic}
                 alt={this.props.currentUser.username} />
               {this.props.currentUser.username}
             </Link>
