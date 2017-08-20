@@ -105,9 +105,7 @@ class SettingsForm extends React.Component {
           </fieldset>
 
           <i>Update your Profile Pic:</i>
-          <ImageUpload
-            image={this.state.proPic}
-            changeImage={this.uploadImage} /><br />
+          <ImageUpload changeImage={this.uploadImage} /><br />
 
           <button
             className='btn btn-lg btn-primary pull-xs-right'

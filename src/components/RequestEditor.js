@@ -59,12 +59,13 @@ class RequestEditor extends React.Component {
       checked: !this.state.checked
     })
 
-    this.changeStartTime = ev => this.props.onUpdateField('startTime', ev.target.value)
-    this.changeStartPlace = ev => this.props.onUpdateField('startPlace', ev.target.value)
-    this.changeEndTime = ev => this.props.onUpdateField('endTime', ev.target.value)
-    this.changeEndPlace = ev => this.props.onUpdateField('endPlace', ev.target.value)
-    this.changeText = ev => this.props.onUpdateField('text', ev.target.value)
-    this.changeTagInput = ev => this.props.onUpdateField('tagInput', ev.target.value)
+    const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
+    this.changeStartTime = ev => updateFieldEvent('startTime')
+    this.changeStartPlace = ev => updateFieldEvent('startPlace')
+    this.changeEndTime = ev => updateFieldEvent('endTime')
+    this.changeEndPlace = ev => updateFieldEvent('endPlace')
+    this.changeText = ev => updateFieldEvent('text')
+    this.changeTagInput = ev => updateFieldEvent('tagInput')
     this.changeImage = url => this.props.onUpdateField('image', url)
 
     this.watchForEnter = ev => {
@@ -107,7 +108,7 @@ class RequestEditor extends React.Component {
       this.setState({ checked: false })
       if(nextProps.params.requestId){
         this.setState({ checked: true, first: false })
-        this.props.onLoad(agent.Requests.get(this.props.params.requestId))
+        this.props.onLoad(agent.Requests.get(nextProps.params.requestId))
       }
     }
   }
@@ -130,7 +131,7 @@ class RequestEditor extends React.Component {
           <div className='row'>
             <div className='col-md-10 offset-md-1 col-xs-12'>
 
-              <ListErrors errors={this.props.error} />
+              <ListErrors errors={this.props.errors} />
 
               <form>
                 <fieldset>

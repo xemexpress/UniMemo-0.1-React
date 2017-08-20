@@ -58,9 +58,7 @@ export default (state=defaultState, action) => {
       }
     case SUBMIT_REQUEST:
       if(action.error){
-        return {
-          ...state
-        }
+        return state
       }
       let redirectRequestURL = `request/${action.payload.request.requestId}`
       return {

@@ -57,11 +57,12 @@ class GiftEditor extends React.Component {
       checked: !this.state.checked
     })
 
-    this.changeText = ev => this.props.onUpdateField('text', ev.target.value)
-    this.changeReceiver = ev => this.props.onUpdateField('receiver', ev.target.value)
-    this.changeExpireAt = ev => this.props.onUpdateField('expireAt', ev.target.value)
-    this.changeAccess = ev => this.props.onUpdateField('access', ev.target.value)
-    this.changeTagInput = ev => this.props.onUpdateField('tagInput', ev.target.value)
+    const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
+    this.changeText = ev => updateFieldEvent('text')
+    this.changeReceiver = ev => updateFieldEvent('receiver')
+    this.changeExpireAt = ev => updateFieldEvent('expireAt')
+    this.changeAccess = ev => updateFieldEvent('access')
+    this.changeTagInput = ev => updateFieldEvent('tagInput')
     this.changeImage = url => this.props.onUpdateField('image', url)
 
     this.watchForEnter = ev => {

@@ -65,7 +65,7 @@ export default (state=defaultState, action) => {
       return {
         ...state,
         inProgress: false,
-        error: action.error ? action.payload.errors : null
+        errors: action.error ? action.payload.errors : null
       }
     default:
   }

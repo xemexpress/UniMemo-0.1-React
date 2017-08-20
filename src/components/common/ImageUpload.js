@@ -67,34 +67,18 @@ class ImageUpload extends React.Component {
       )
     }else{
       return (
-        <div>
-          {
-            this.props.image ?
-            <div className='row'>
-              <div className='offset-sm-4 col-sm-4 offset-xs-3 col-xs-6'>
-                <img className='img-fluid' src={this.props.image} alt='Preview uploads failed.' />
-              </div>
-            </div>
-            :
-            null
-          }
-          <br />
-          {
-            this.state.uploading ?
-            <div className='text-xs-center'>
-              <Ionicon icon="ion-load-c" fontSize="60px" color="#347eff" rotate={true} />
-            </div>
-            :
-            <Dropzone
-              className='card text-xs-center article-preview'
-              multiple={false}
-              accept='image/*'
-              onDrop={this.onImageDrop}>
-              <div>Drop an image or click to select a file to upload.</div>
-            </Dropzone>
-          }
-          <br />
+        this.state.uploading ?
+        <div className='text-xs-center'>
+          <Ionicon icon="ion-load-c" fontSize="60px" color="#347eff" rotate={true} />
         </div>
+        :
+        <Dropzone
+          className='card text-xs-center article-preview'
+          multiple={false}
+          accept='image/*'
+          onDrop={this.onImageDrop}>
+          <div>Drop an image or click to select a file to upload.</div>
+        </Dropzone>
       )
     }
   }

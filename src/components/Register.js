@@ -16,24 +16,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onChangeUsername: value => dispatch({
+  onUpdateField: (key, value) => dispatch({
     type: UPDATE_FIELD_AUTH,
-    key: 'username',
-    value
-  }),
-  onChangeEmail: value => dispatch({
-    type: UPDATE_FIELD_AUTH,
-    key: 'email',
-    value
-  }),
-  onChangePassword: value => dispatch({
-    type: UPDATE_FIELD_AUTH,
-    key: 'password',
-    value
-  }),
-  onChangeConfirm: value => dispatch({
-    type: UPDATE_FIELD_AUTH,
-    key: 'confirm',
+    key,
     value
   }),
   onSubmit: (username, email, password) => dispatch({
@@ -52,10 +37,11 @@ class Register extends React.Component {
       error: ''
     }
 
-    this.changeUsername = ev => this.props.onChangeUsername(ev.target.value)
-    this.changeEmail = ev => this.props.onChangeEmail(ev.target.value)
-    this.changePassword = ev => this.props.onChangePassword(ev.target.value)
-    this.changeConfirm = ev => this.props.onChangeConfirm(ev.target.value)
+    const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
+    this.changeUsername = ev => updateFieldEvent('username')
+    this.changeEmail = ev => updateFieldEvent('email')
+    this.changePassword = ev => updateFieldEvent('password')
+    this.changeConfirm = ev => updateFieldEvent('confirm')
     this.submitForm = (username, email, password) => ev => {
       ev.preventDefault()
       if(this.props.confirm === this.props.password){
@@ -75,7 +61,7 @@ class Register extends React.Component {
     const username = this.props.username
     const email = this.props.email
     const password = this.props.password
-    const confirm = this.state.confirm
+    const confirm = this.props.confirm
 
     return (
       <div className='auth-page'>
