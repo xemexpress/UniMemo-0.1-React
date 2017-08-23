@@ -10,7 +10,7 @@ import {
   TAKE_REQUEST,
   UNTAKE_REQUEST,
   END_REQUEST
-} from '../../constants/actionTypes'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   currentUser: state.common.currentUser,

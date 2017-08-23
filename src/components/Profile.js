@@ -12,7 +12,7 @@ import {
   UNFOLLOW_USER,
   SET_PAGE,
   SWITCH_TAKINGS
-} from '../constants/actionTypes'
+} from '../constants'
 
 const EditProfileSettings = props => {
   if(props.isUser){

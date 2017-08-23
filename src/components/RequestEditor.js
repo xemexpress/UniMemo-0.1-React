@@ -14,7 +14,7 @@ import {
   UPDATE_FIELD_REQUEST,
   ADD_TAG_REQUEST,
   REMOVE_TAG_REQUEST
-} from '../constants/actionTypes'
+} from '../constants'
 
 const mapStateToProps = state => ({
   ...state.requestEditor

@@ -8,7 +8,7 @@ import agent from '../../../agent'
 import {
   UPDATE_COMMENT,
   DELETE_COMMENT
-} from '../../../constants/actionTypes'
+} from '../../../constants'
 
 const CommentActions = props => {
   if(props.show){

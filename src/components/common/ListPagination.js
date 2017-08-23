@@ -2,7 +2,7 @@ import React from 'react'
 
 import {
   PER_PAGE
-} from '../../constants/refs'
+} from '../../constants'
 
 const ListPagination = props => {
   if(props.unitsCount <= PER_PAGE){

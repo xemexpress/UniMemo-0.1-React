@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, hashHistory, Route, IndexRoute } from 'react-router'
+import ReactGA from 'react-ga'
 
 import App from './components/App'
 import Home from './components/Home'
@@ -17,9 +18,23 @@ import Gift from './components/Gift'
 import GiftEditor from './components/GiftEditor'
 import store from './store'
 
+import {
+  GA_TRACKING_ID
+} from './constants'
+
+ReactGA.initialize(GA_TRACKING_ID)
+
+function fireTracking(){
+  ReactGA.set({
+      useId: 523,
+      page: window.location.hash
+  })
+  ReactGA.pageview(window.location.hash)
+}
+
 ReactDOM.render((
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router onUpdate={fireTracking} history={hashHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
         <Route path='login' component={Login} />

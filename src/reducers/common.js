@@ -1,4 +1,5 @@
 import {
+  APP_NAME,
   APP_LOAD,
   REDIRECT,
   LOGIN,
@@ -9,10 +10,10 @@ import {
   SUBMIT_REQUEST,
   DELETE_GIFT,
   SUBMIT_GIFT
-} from '../constants/actionTypes'
+} from '../constants'
 
 const defaultState = {
-  appName: 'UniMemo',
+  appName: APP_NAME,
   token: null
 }
 

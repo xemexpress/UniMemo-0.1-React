@@ -13,7 +13,7 @@ import {
   REQUEST_PAGE_UNLOADED,
   HELPER_LOADED,
   CONFIRM_HELPER
-} from '../../constants/actionTypes'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   ...state.request,

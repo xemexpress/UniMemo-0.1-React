@@ -9,7 +9,7 @@ import agent from '../../../agent'
 import {
   WISH_REQUEST,
   UNWISH_REQUEST
-} from '../../../constants/actionTypes'
+} from '../../../constants'
 
 const mapDispatchToProps = dispatch => ({
   wish: requestId => dispatch({

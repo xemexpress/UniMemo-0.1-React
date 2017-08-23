@@ -8,7 +8,7 @@ import {
   DELETE_GIFT,
   UPDATE_GIFT,
   SWITCH_ACCESS_GIFT
-} from '../../constants/actionTypes'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   currentUser: state.common.currentUser

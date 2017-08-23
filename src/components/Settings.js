@@ -8,7 +8,7 @@ import agent from '../agent'
 import {
   SAVE_SETTINGS,
   LOGOUT
-} from '../constants/actionTypes'
+} from '../constants'
 
 class SettingsForm extends React.Component {
   constructor(){

@@ -5,7 +5,7 @@ import {
   REGISTER,
   LOGIN_PAGE_UNLOADED,
   REGISTER_PAGE_UNLOADED
-} from '../constants/actionTypes'
+} from '../constants'
 
 const defaultState = {
   username: '',

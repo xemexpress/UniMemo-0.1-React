@@ -8,7 +8,7 @@ import agent from '../agent'
 import {
   REDIRECT,
   APP_LOAD
-} from '../constants/actionTypes'
+} from '../constants'
 
 const mapStateToProps = state => ({
   appLoaded: state.common.appLoaded,

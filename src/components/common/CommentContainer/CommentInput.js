@@ -6,7 +6,7 @@ import agent from '../../../agent'
 
 import {
   ADD_COMMENT
-} from '../../../constants/actionTypes'
+} from '../../../constants'
 
 const mapDispatchToProps = dispatch => ({
   onSubmit: payload => dispatch({

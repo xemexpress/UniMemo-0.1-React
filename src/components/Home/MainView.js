@@ -10,7 +10,7 @@ import {
   CHANGE_TAB,
   TOGGLE_TYPES,
   SET_PAGE
-} from '../../constants/actionTypes'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   ...state.contentList,

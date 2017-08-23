@@ -9,7 +9,7 @@ import {
   UPDATE_FIELD_AUTH,
   LOGIN,
   LOGIN_PAGE_UNLOADED
-} from '../constants/actionTypes'
+} from '../constants'
 
 const mapStateToProps = state => ({
   ...state.auth

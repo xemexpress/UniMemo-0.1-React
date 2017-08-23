@@ -10,7 +10,7 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER
-} from '../../constants/actionTypes'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   ...state.home,

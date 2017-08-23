@@ -13,7 +13,7 @@ import {
   ADD_TAG_GIFT,
   REMOVE_TAG_GIFT,
   SUBMIT_GIFT
-} from '../constants/actionTypes'
+} from '../constants'
 
 const mapStateToProps = state => ({
   ...state.giftEditor

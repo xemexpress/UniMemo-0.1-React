@@ -9,7 +9,7 @@ import agent from '../../agent'
 import {
   GIFT_PAGE_LOADED,
   GIFT_PAGE_UNLOADED
-} from '../../constants/actionTypes'
+} from '../../constants'
 
 const mapStateToProps = state => ({
   ...state.gift,
