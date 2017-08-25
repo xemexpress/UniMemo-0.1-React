@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Ionicon from 'react-ionicons'
 import { connect } from 'react-redux'
 
 import Header from './Header'
@@ -60,6 +61,11 @@ class App extends React.Component {
         <Header
           appName={this.props.appName}
           currentUser={this.props.currentUser} />
+        <div className='text-xs-center' style={{ margin: '100px' }}>
+          <Ionicon icon="ion-qr-scanner" color="#5CB85C" fontSize="57px" rotate={true} />
+          <br/>
+          <span className='logo-font loading'>Loading...</span>
+        </div>
       </div>
     )
   }
