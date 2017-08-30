@@ -38,10 +38,10 @@ class Register extends React.Component {
     }
 
     const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
-    this.changeUsername = ev => updateFieldEvent('username')
-    this.changeEmail = ev => updateFieldEvent('email')
-    this.changePassword = ev => updateFieldEvent('password')
-    this.changeConfirm = ev => updateFieldEvent('confirm')
+    this.changeUsername = updateFieldEvent('username')
+    this.changeEmail = updateFieldEvent('email')
+    this.changePassword = updateFieldEvent('password')
+    this.changeConfirm = updateFieldEvent('confirm')
     this.submitForm = (username, email, password) => ev => {
       ev.preventDefault()
       if(this.props.confirm === this.props.password){
@@ -79,11 +79,10 @@ class Register extends React.Component {
                 </Link>
               </p>
 
-              <ListErrors errors={this.props.errors} />
             {
               this.state.error ?
               <ul className='error-messages'><li>{this.state.error}</li></ul>
-              : null
+              : <ListErrors errors={this.props.errors} />
             }
 
               <form onSubmit={this.submitForm(username, email, password)}>
