@@ -8,7 +8,8 @@ import agent from '../agent'
 import {
   UPDATE_FIELD_AUTH,
   REGISTER,
-  REGISTER_PAGE_UNLOADED
+  LOGIN,
+  AUTH_PAGE_UNLOADED
 } from '../constants'
 
 const mapStateToProps = state => ({
@@ -21,18 +22,22 @@ const mapDispatchToProps = dispatch => ({
     key,
     value
   }),
-  onSubmit: (username, email, password) => dispatch({
+  onRegSubmit: (username, email, password) => dispatch({
     type: REGISTER,
     payload: agent.Auth.register(username, email, password)
   }),
+  onLogSubmit: (email, password) => dispatch({
+    type: LOGIN,
+    payload: agent.Auth.login(email, password)
+  }),
   onUnload: () => dispatch({
-    type: REGISTER_PAGE_UNLOADED
+    type: AUTH_PAGE_UNLOADED
   })
 })
 
-class Register extends React.Component {
-  constructor(){
-    super()
+class Auth extends React.Component {
+  constructor(props){
+    super(props)
     this.state = {
       error: ''
     }
@@ -42,14 +47,29 @@ class Register extends React.Component {
     this.changeEmail = updateFieldEvent('email')
     this.changePassword = updateFieldEvent('password')
     this.changeConfirm = updateFieldEvent('confirm')
+    
     this.submitForm = (username, email, password) => ev => {
       ev.preventDefault()
-      if(this.props.confirm === this.props.password){
-        this.setState({ error: '' })
-        this.props.onSubmit(username, email, password)
+
+      if(this.props.route.path === 'register'){
+        // Register
+        if(this.props.confirm === this.props.password){
+          this.setState({ error: '' })
+          this.props.onRegSubmit(username, email, password)
+        }else{
+          this.setState({ error: 'Please confirm your password again:)' })
+        }
       }else{
-        this.setState({ error: 'Please confirm your password again:)' })
+        // Log in
+        this.props.onLogSubmit(email, password)
       }
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.route.path !== nextProps.route.path){
+      this.setState({ error: '' })
+      this.props.onUnload()
     }
   }
 
@@ -62,7 +82,7 @@ class Register extends React.Component {
     const email = this.props.email
     const password = this.props.password
     const confirm = this.props.confirm
-
+    
     return (
       <div className='auth-page'>
         <div className='container page'>
@@ -70,13 +90,19 @@ class Register extends React.Component {
             <div className='col-md-6 offset-md-3 col-xs-12'>
 
               <h1 className='text-xs-center'>
-                Sign up
+                {
+                  this.props.route.path === 'register' ?
+                  'Sign Up'
+                  : 'Sign In'
+                }
               </h1>
 
               <p className='text-xs-center'>
-                <Link to='login'>
-                  Have an account?
-                </Link>
+                {
+                  this.props.route.path === 'register' ?
+                  <Link to='login'>Have an account?</Link>
+                  : <Link to='register'>Need an account?</Link>
+                }
               </p>
 
             {
@@ -85,17 +111,22 @@ class Register extends React.Component {
               : <ListErrors errors={this.props.errors} />
             }
 
-              <form onSubmit={this.submitForm(username, email, password)}>
+              <form onSubmit={this.props.route.path === 'register' ?
+                this.submitForm(username, email, password)
+                : this.submitForm(null, email, password)}>
                 <fieldset>
-
-                  <fieldset className='form-group'>
-                    <input
-                      className='form-control form-control-lg'
-                      type='text'
-                      placeholder='Username'
-                      value={username}
-                      onChange={this.changeUsername} />
-                  </fieldset>
+                  {
+                    this.props.route.path === 'register' ?
+                    <fieldset className='form-group'>
+                      <input
+                        className='form-control form-control-lg'
+                        type='text'
+                        placeholder='Username'
+                        value={username}
+                        onChange={this.changeUsername} />
+                    </fieldset>
+                    : null
+                  }
 
                   <fieldset className='form-group'>
                     <input
@@ -115,20 +146,28 @@ class Register extends React.Component {
                       onChange={this.changePassword} />
                   </fieldset>
 
-                  <fieldset className='form-group'>
-                    <input
-                      className='form-control form-control-lg'
-                      type='password'
-                      placeholder='Confirm Password'
-                      value={confirm}
-                      onChange={this.changeConfirm} />
-                  </fieldset>
+                  {
+                    this.props.route.path === 'register' ?
+                    <fieldset className='form-group'>
+                      <input
+                        className='form-control form-control-lg'
+                        type='password'
+                        placeholder='Confirm Password'
+                        value={confirm}
+                        onChange={this.changeConfirm} />
+                    </fieldset>
+                    : null
+                  }
 
                   <button
                     className='btn btn-lg btn-primary pull-xs-right'
                     type='submit'
                     disabled={this.props.inProgress}>
-                    Sign up
+                    {
+                      this.props.route.path === 'register' ?
+                      'Sign up'
+                      : 'Sign in'
+                    }
                   </button>
 
                 </fieldset>
@@ -142,4 +181,4 @@ class Register extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

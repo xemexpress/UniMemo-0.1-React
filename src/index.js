@@ -6,8 +6,7 @@ import ReactGA from 'react-ga'
 
 import App from './components/App'
 import Home from './components/Home'
-import Login from './components/Login'
-import Register from './components/Register'
+import Auth from './components/Auth'
 import Settings from './components/Settings'
 import Profile from './components/Profile'
 import ProfileWishes from './components/ProfileWishes'
@@ -37,8 +36,8 @@ ReactDOM.render((
     <Router onUpdate={fireTracking} history={hashHistory}>
       <Route path='/' component={App}>
         <IndexRoute component={Home} />
-        <Route path='login' component={Login} />
-        <Route path='register' component={Register} />
+        <Route path='login' component={Auth} />
+        <Route path='register' component={Auth} />
         <Route path='settings' component={Settings} />
         <Route path='@:username/taken' component={ProfileTaken} />
         <Route path='@:username' component={Profile} />
