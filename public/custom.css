@@ -114,6 +114,10 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.nav-item {
+  cursor: pointer;
+}
+
 /* Tag list */
 .tag-list {
   margin-top: 10px;
@@ -137,7 +141,6 @@ input:checked + .slider:before {
 }
 
 .topnav li {
-    float: right;
     display: inline;
     text-align: center;
 }

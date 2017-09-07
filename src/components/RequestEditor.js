@@ -60,12 +60,12 @@ class RequestEditor extends React.Component {
     })
 
     const updateFieldEvent = key => ev => this.props.onUpdateField(key, ev.target.value)
-    this.changeStartTime = ev => updateFieldEvent('startTime')
-    this.changeStartPlace = ev => updateFieldEvent('startPlace')
-    this.changeEndTime = ev => updateFieldEvent('endTime')
-    this.changeEndPlace = ev => updateFieldEvent('endPlace')
-    this.changeText = ev => updateFieldEvent('text')
-    this.changeTagInput = ev => updateFieldEvent('tagInput')
+    this.changeStartTime = updateFieldEvent('startTime')
+    this.changeStartPlace = updateFieldEvent('startPlace')
+    this.changeEndTime = updateFieldEvent('endTime')
+    this.changeEndPlace = updateFieldEvent('endPlace')
+    this.changeText = updateFieldEvent('text')
+    this.changeTagInput = updateFieldEvent('tagInput')
     this.changeImage = url => this.props.onUpdateField('image', url)
 
     this.watchForEnter = ev => {
