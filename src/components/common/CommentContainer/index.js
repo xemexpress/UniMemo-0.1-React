@@ -7,9 +7,7 @@ class CommentContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      hidden: !(this.props.isPoster || this.props.comments.some(comment => {
-        return comment.author.username === this.props.currentUser.username
-      }))
+      hidden: !(this.props.isPoster || this.props.comments.some(comment => comment.author.username === this.props.currentUser.username))
     }
 
     this.showComments = ev => {
@@ -32,7 +30,7 @@ class CommentContainer extends React.Component {
             <a className='text-success'>No responses...yet</a>
           </div>
           :
-          this.state.hidden && !this.props.comments.some((comment) => comment.author.username === this.props.currentUser.username) ?
+          this.state.hidden ?
           <div className='card text-xs-center article-preview'>
             <a className='text-success' onClick={this.showComments}>Show all responses</a>
           </div>
