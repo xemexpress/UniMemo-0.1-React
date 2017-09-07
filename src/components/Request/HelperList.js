@@ -44,12 +44,17 @@ class HelperList extends React.Component {
                 <div className='helper' key={helper.username}>
                   <img src={helper.proPic} alt={helper.username} />&nbsp;
                   {helper.username}
-                  <button
-                    className='btn btn-sm pull-xs-right btn-primary confirmButton'
-                    type='button'
-                    onClick={this.onHelperConfirm(helper)}>
-                    Confirm
-                  </button>
+                  {
+                    request.tagList.indexOf('done') === -1 ?
+                    <button
+                      className='btn btn-sm pull-xs-right btn-primary confirmButton'
+                      type='button'
+                      onClick={this.onHelperConfirm(helper)}>
+                      Confirm
+                    </button>
+                    :
+                    <i className='pull-xs-right'>Not confirmed yet</i>
+                  }
                 </div>
               )
             })

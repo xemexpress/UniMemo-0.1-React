@@ -32,7 +32,7 @@ class CommentContainer extends React.Component {
             <a className='text-success'>No responses...yet</a>
           </div>
           :
-          this.state.hidden ?
+          this.state.hidden && !this.props.comments.some((comment) => comment.author.username === this.props.currentUser.username) ?
           <div className='card text-xs-center article-preview'>
             <a className='text-success' onClick={this.showComments}>Show all responses</a>
           </div>
