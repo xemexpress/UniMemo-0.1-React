@@ -16,6 +16,7 @@ class Statement extends React.Component {
 
 const mapStateToProps = state => ({
   appName: state.common.appName,
+  statement: state.common.statement,
   currentPage: state.contentList.currentPage,
   token: state.common.token
 })
@@ -29,7 +30,7 @@ const Banner = props => {
         <h1 className='logo-font'>
           {props.appName}
         </h1>
-        <Statement statement='Convenience from the Convenients' page={props.currentPage}/>
+        <Statement statement={props.statement} page={props.currentPage}/>
       </div>
     </div>
   )

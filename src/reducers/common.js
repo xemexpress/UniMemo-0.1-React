@@ -1,5 +1,6 @@
 import {
   APP_NAME,
+  STATEMENT,
   APP_LOAD,
   REDIRECT,
   LOGIN,
@@ -14,6 +15,7 @@ import {
 
 const defaultState = {
   appName: APP_NAME,
+  statement: STATEMENT,
   token: null
 }
 
