@@ -60,11 +60,11 @@ class RequestPreview extends React.Component {
           <h1>{request.text}</h1>
 
           <p>
-            Start Time:&nbsp;{request.startTime ? new Date(request.startTime).toDateString() : 'Before End Time :)'}
+            Start Time:&nbsp;{request.startTime ? new Date(request.startTime).toString().slice(0,21) : 'Before End Time :)'}
             <br />
             Start Place:&nbsp;{request.startPlace ? request.startPlace : 'Not determined yet :)'}
             <br /><br />
-            End Time:&nbsp;{new Date(request.endTime).toDateString()}
+            End Time:&nbsp;{new Date(request.endTime).toString().slice(0,21)}
             <br />
             End Place:&nbsp;{request.endPlace}
           </p>

@@ -49,7 +49,7 @@ class Gift extends React.Component {
           'People could use it before: '
           : 'You may use it before: '
         }
-        <strong>${new Date(gift.expireAt).toDateString()}</strong>
+        <strong>${new Date(gift.expireAt).toString().slice(0,21)}</strong>
       </div>
     `
 

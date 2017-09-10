@@ -60,14 +60,14 @@ class Request extends React.Component {
     const text = `
       <div>
         Start Time:&nbsp;
-          <strong>${request.startTime ? new Date(request.startTime).toDateString() : 'Before End Time :)'}</strong>
+          <strong>${request.startTime ? new Date(request.startTime).toString().slice(0,21) : 'Before End Time :)'}</strong>
         <br />
         Start Place:&nbsp;
           <strong>${request.startPlace ? request.startPlace : 'Not determined yet :)'}</strong>
         <br />
         <br />
         End Time:&nbsp;
-          <strong>${new Date(request.endTime).toDateString()}</strong>
+          <strong>${new Date(request.endTime).toString().slice(0,21)}</strong>
         <br />
         End Place:&nbsp;
           <strong>${request.endPlace}</strong>

@@ -14,7 +14,7 @@ const GiftPreview = props => {
       <Link to={`gift/${gift.giftId}`} className='preview-link'>
         <h1>{gift.text}</h1>
 
-        <p>Before:&nbsp;{new Date(gift.expireAt).toDateString()}</p>
+        <p>Before:&nbsp;{new Date(gift.expireAt).toString().slice(0,21)}</p>
 
         <span>Read more...</span>
 

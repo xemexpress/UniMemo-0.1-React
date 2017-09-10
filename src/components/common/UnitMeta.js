@@ -11,7 +11,7 @@ const UnitMeta = props => {
   return (
     <div className='article-meta'>
       <Link to={`@${unitHolder.username}`}>
-        <img src={unitHolder.proPic} alt={unitHolder.username} />
+        <img className="user-img" src={unitHolder.proPic} alt={unitHolder.username} />
       </Link>
 
       <div className='info'>
