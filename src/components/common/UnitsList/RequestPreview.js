@@ -40,8 +40,9 @@ class RequestPreview extends React.Component {
     const request = this.props.request
     
     // Need to offset the timezone by -8 hrs, as Hong Kong (GMT+8).
+    let startDate
     if(request.startTime){
-      let startDate = new Date(request.startTime)
+      startDate = new Date(request.startTime)
       startDate = new Date(startDate.getTime() - 3600000 * 8)
     }
     
@@ -69,7 +70,7 @@ class RequestPreview extends React.Component {
           <h1>{request.text}</h1>
 
           <p>
-            Start Time:&nbsp;{request.startTime ? startDate.toString().slice(0,21) : 'Before End Time :)'}
+            Start Time:&nbsp;{startDate ? startDate.toString().slice(0,21) : 'Before End Time :)'}
             <br />
             Start Place:&nbsp;{request.startPlace ? request.startPlace : 'Not determined yet :)'}
             <br /><br />
