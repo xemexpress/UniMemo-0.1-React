@@ -55,7 +55,7 @@ class Request extends React.Component {
 
     // Need to offset the timezone by -8 hrs, as Hong Kong (GMT+8).
     let startDate
-    if(request.startTime){
+    if(request.startTime === undefined){
       startDate = new Date(request.startTime)
       startDate = new Date(startDate.getTime() - 3600000 * 8)
     }
