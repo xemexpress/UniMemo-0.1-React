@@ -38,6 +38,15 @@ class RequestPreview extends React.Component {
 
   render(){
     const request = this.props.request
+    
+    // Need to offset the timezone by -8 hrs, as Hong Kong (GMT+8).
+    if(request.startTime){
+      let startDate = new Date(request.startTime)
+      startDate = new Date(startDate.getTime() - 3600000 * 8)
+    }
+    
+    let endDate = new Date(request.endTime)
+    endDate = new Date(endDate.getTime() - 3600000 * 8)
 
     const wishButtonClass = request.wished ?
       'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary'
@@ -60,11 +69,11 @@ class RequestPreview extends React.Component {
           <h1>{request.text}</h1>
 
           <p>
-            Start Time:&nbsp;{request.startTime ? new Date(request.startTime).toString().slice(0,21) : 'Before End Time :)'}
+            Start Time:&nbsp;{request.startTime ? startDate.toString().slice(0,21) : 'Before End Time :)'}
             <br />
             Start Place:&nbsp;{request.startPlace ? request.startPlace : 'Not determined yet :)'}
             <br /><br />
-            End Time:&nbsp;{new Date(request.endTime).toString().slice(0,21)}
+            End Time:&nbsp;{endDate.toString().slice(0,21)}
             <br />
             End Place:&nbsp;{request.endPlace}
           </p>

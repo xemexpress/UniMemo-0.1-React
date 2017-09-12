@@ -38,6 +38,10 @@ class Gift extends React.Component {
   render(){
     const gift = this.props.gift
 
+    // Need to offset the timezone by -8 hrs, as Hong Kong (GMT+8).
+    let expireDate = new Date(gift.expireAt)
+    expireDate = new Date(expireDate.getTime() - 3600000 * 8)
+
     if(!gift){
       return null
     }
@@ -49,7 +53,7 @@ class Gift extends React.Component {
           'People could use it before: '
           : 'You may use it before: '
         }
-        <strong>${new Date(gift.expireAt).toString().slice(0,21)}</strong>
+        <strong>${expireDate.toString().slice(0,21)}</strong>
       </div>
     `
 
