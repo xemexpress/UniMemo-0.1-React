@@ -42,7 +42,7 @@ class HelperList extends React.Component {
             helpers.map(helper => {
               return (
                 <div className='helper' key={helper.username}>
-                  <img src={helper.proPic} alt={helper.username} />&nbsp;
+                  <img className='user-img' src={helper.proPic} alt={helper.username} />&nbsp;
                   {helper.username}
                   {
                     request.tagList.indexOf('done') === -1 ?
@@ -65,7 +65,7 @@ class HelperList extends React.Component {
       return (
         <div className='article-meta'>
           Helper confirmed:&nbsp;&nbsp;&nbsp;
-          <img src={request.helper.proPic} alt={request.helper.username} />&nbsp;
+          <img className='user-img' src={request.helper.proPic} alt={request.helper.username} />&nbsp;
           {request.helper.username}&nbsp;&nbsp;
         </div>
       )

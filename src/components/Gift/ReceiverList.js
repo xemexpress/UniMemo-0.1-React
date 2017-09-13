@@ -10,7 +10,7 @@ const ReceiverList = props => {
         <i>No one take it from the provider... yet:)</i>
         :
         <div>
-          <img src={receiver.proPic} alt={receiver.username} />&nbsp;&nbsp;
+          <img className='user-img' src={receiver.proPic} alt={receiver.username} />&nbsp;&nbsp;
           {receiver.username}
           {
             receiver.username === props.currentUser.username ?
