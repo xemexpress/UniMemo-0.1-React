@@ -70,7 +70,7 @@ class ProfileTaken extends Profile {
           <Link
             className='nav-link'
             to={`@${this.props.profile.username}/wishes`}>
-            <i className='ion-help-buoy'></i>&nbsp;Wished Requests
+            <i className='ion-help-buoy'></i>&nbsp;Wished Req.
           </Link>
         </li>
       </ul>

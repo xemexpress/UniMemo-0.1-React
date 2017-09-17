@@ -52,11 +52,11 @@ class Request extends React.Component {
 
   render(){
     const request = this.props.request
-    
+
     if(!request){
       return null
     }
-
+    
     // Need to offset the timezone by -8 hrs, as Hong Kong (GMT+8).
     const text = `
       <div>

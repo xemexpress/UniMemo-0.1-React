@@ -101,6 +101,12 @@ class MainView extends React.Component {
                 <FurtherCollectTab
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
+
+                <button
+                  className="btn btn-outline-primary cat-btn pull-xs-right"
+                  onClick={this.handleToggle}>
+                  &nbsp;<i className='ion-compose'></i>&nbsp;
+                </button>
               </span>
               :
               <span>
@@ -108,19 +114,30 @@ class MainView extends React.Component {
                   currentUser={currentUser}
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
+
                 <ReceiveTab
                   currentUser={currentUser}
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
+                  
+                <button
+                  className="btn btn-primary cat-btn pull-xs-right"
+                  onClick={this.handleToggle}>
+                  &nbsp;<i className='ion-android-happy'></i>&nbsp;
+                </button>
               </span>
             }
 
             <TagTab tag={this.props.tag} />
 
+            {/* Content-toggle: disabled
+            
             <label className="switch pull-xs-right">
               <input type="checkbox" onChange={this.handleToggle} checked={this.state.loadRequest}/>
               <div className="slider round"></div>
             </label>
+
+            */}
 
           </ul>
         </div>
