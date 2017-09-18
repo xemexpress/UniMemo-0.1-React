@@ -94,11 +94,11 @@ class MainView extends React.Component {
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
 
-                <GlobalFeedTab
+                <FurtherCollectTab
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
 
-                <FurtherCollectTab
+                <GlobalFeedTab
                   tab={this.props.tab}
                   onTabClick={this.props.onTabClick} />
 

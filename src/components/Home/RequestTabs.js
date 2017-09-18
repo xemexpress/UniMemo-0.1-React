@@ -44,7 +44,7 @@ export const FurtherCollectTab = props => {
       <a
         className={props.tab === 'furtherCollect' ? 'nav-link active' : 'nav-link'}
         onClick={handleFurtherCollect}>
-        <i className='ion-paper-airplane'></i>&nbsp;Further Collection
+        <i className='ion-paper-airplane'></i>&nbsp;Further Collect
       </a>
     </li>
   )
