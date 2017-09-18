@@ -23,7 +23,7 @@ class ProfileWishes extends Profile {
             <Link
               className='nav-link'
               to={`@${this.props.profile.username}/taken`}>
-              <i className='ion-ios-analytics-outline'></i>&nbsp;My Undertakings
+              <i className='ion-ios-analytics-outline'></i>&nbsp;Req. Taken
             </Link>
           </li>
           : null
@@ -33,7 +33,7 @@ class ProfileWishes extends Profile {
           <Link
             className='nav-link'
             to={`@${this.props.profile.username}`}>
-            <i className='ion-ios-pulse-strong'></i>&nbsp;My Requests
+            <i className='ion-ios-pulse-strong'></i>&nbsp;Req. Sent
           </Link>
         </li>
 

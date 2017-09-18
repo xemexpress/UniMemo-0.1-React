@@ -28,7 +28,7 @@ export const GlobalFeedTab = props => {
       <a
         className={props.tab === 'all' ? 'nav-link active' : 'nav-link'}
         onClick={handleAll}>
-        <i className='ion-planet'></i>&nbsp;Global Feed
+        <i className='ion-planet'></i>&nbsp;Global
       </a>
     </li>
   )

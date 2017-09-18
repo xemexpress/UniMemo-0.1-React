@@ -51,7 +51,7 @@ class ProfileTaken extends Profile {
               <span
                 className={this.state.content === 'myOngoings' ? 'nav-link active' : 'nav-link'}
                 onClick={ongoings}>
-                <i className='ion-android-time'></i>&nbsp;Waiting
+                <i className='ion-android-time'></i>&nbsp;Wait
               </span>
             </li>
           </span>
@@ -62,7 +62,7 @@ class ProfileTaken extends Profile {
           <Link
             className='nav-link'
             to={`@${this.props.profile.username}`}>
-            <i className='ion-ios-pulse-strong'></i>&nbsp;My Requests
+            <i className='ion-ios-pulse-strong'></i>&nbsp;Req. Sent
           </Link>
         </li>
 
