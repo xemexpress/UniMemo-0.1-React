@@ -126,7 +126,7 @@ class Comment extends React.Component {
           </Link>&nbsp;
 
           <span className='date-posted'>
-            {new Date(comment.createdAt).toDateString()}
+            {new Date(new Date(comment.createdAt).getTime() - 3600000 * 8).toDateString()}
           </span>
 
           <CommentActions

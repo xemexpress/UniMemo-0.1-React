@@ -19,7 +19,7 @@ const UnitMeta = props => {
           {unitHolder.username}
         </Link>
         <span className='date'>
-          {new Date(unit.createdAt).toDateString()}
+          {new Date(new Date(unit.createdAt).getTime() - 3600000 * 8).toDateString()}
         </span>
       </div>
 
