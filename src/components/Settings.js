@@ -94,7 +94,7 @@ class SettingsForm extends React.Component {
               onChange={this.updateState('bio')} />
           </fieldset>
 
-          <strong>Mobile No.:</strong>
+          {/* <strong>Mobile No.:</strong>
           <fieldset className='form-group'>
             <input
               className='form-control form-control-lg'
@@ -102,7 +102,7 @@ class SettingsForm extends React.Component {
               placeholder='Mobile Number'
               value={this.state.mobileNum}
               onChange={this.updateState('mobileNum')} />
-          </fieldset>
+          </fieldset> */}
 
           <i>Update your Profile Pic:</i>
           <ImageUpload changeImage={this.uploadImage} /><br />

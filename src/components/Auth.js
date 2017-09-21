@@ -132,7 +132,7 @@ class Auth extends React.Component {
                     <input
                       className='form-control form-control-lg'
                       type='email'
-                      placeholder='Email'
+                      placeholder={this.props.route.path === 'register' ? 'Email for Login' : 'Email'}
                       value={email}
                       onChange={this.changeEmail} />
                   </fieldset>

@@ -118,7 +118,8 @@ class Profile extends React.Component {
             <Link
               className='nav-link'
               to={`@${this.props.profile.username}/taken`}>
-              <i className='ion-ios-analytics-outline'></i>&nbsp;Req. Taken
+              <i className='ion-android-checkbox-outline'></i>&nbsp;&nbsp;
+              <i className='ion-android-time'></i>&nbsp;&nbsp;Req. Taken
             </Link>
           </li>
           : null
