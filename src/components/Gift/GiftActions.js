@@ -87,16 +87,20 @@ class GiftActions extends React.Component {
         <span>
           <button
             className='btn btn-sm btn-outline-info'
+            disabled={!isReceiver && gift.tagList.indexOf('personal') !== -1}
             onClick={this.handleReceive(gift)}>
             {
-              isReceiver ? <span><i className='ion-log-in'></i>&nbsp;Return. Thanks!</span>
-              : <span><i className='ion-log-out'></i>&nbsp;Receive</span>
+              isReceiver ?
+              <span><i className='ion-log-in'></i>&nbsp;Return. Thanks!</span>
+              : gift.tagList.indexOf('personal') === -1 ?
+              <span><i className='ion-log-out'></i>&nbsp;Receive</span>
+              : <span><i className='ion-android-happy'></i>&nbsp;Thanks. Bye!</span> 
             }
           </button>
           &nbsp;&nbsp;&nbsp;
           {
             !isReceiver ? null : gift.tagList.indexOf('personal') !== -1 ?
-            <i>This Gift can't be switched to public</i>
+            <i>This Gift can't be switched to openPublic</i>
             :
             <button
               className='btn btn-sm btn-outline-danger'
