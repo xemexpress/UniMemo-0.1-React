@@ -14,7 +14,7 @@ import {
 
 const mapStateToProps = state => ({
   ...state.home,
-  token: state.common.token
+  currentUser: state.common.currentUser
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -35,9 +35,9 @@ const mapDispatchToProps = dispatch => ({
 
 class Home extends React.Component {
   componentWillMount(){
-    if(this.props.token){
-      const tab = this.props.token ? 'collect' : 'all'
-      const requestsPromise = this.props.token ?
+    if(this.props.currentUser){
+      const tab = this.props.currentUser ? 'collect' : 'all'
+      const requestsPromise = this.props.currentUser ?
         agent.Requests.collect() : agent.Requests.all()
 
       this.props.onLoad(tab, Promise.all([agent.Tags.getRequests(), requestsPromise]))
@@ -49,7 +49,7 @@ class Home extends React.Component {
   }
 
   render(){
-    if(this.props.token){
+    if(this.props.currentUser){
       return (
         <div className='home-page'>
 
