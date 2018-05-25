@@ -6,6 +6,11 @@ const LoggedOutView = props => {
     return (
       <ul className='nav navbar-nav pull-xs-right'>
         <li className='nav-item'>
+          <span className='nav-link' style={{ 'pointer-events': 'none', 'font-size': '80%' }}>
+            (請使用無痕瀏覽)
+          </span>
+        </li>
+        <li className='nav-item'>
           <Link to='login' className='nav-link'>
             Sign in
           </Link>
